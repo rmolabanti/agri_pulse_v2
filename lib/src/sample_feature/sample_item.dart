@@ -2,5 +2,9 @@
 class SampleItem {
   const SampleItem(this.id);
 
-  final int id;
+  final String id;
+
+  static SampleItem fromJson(itemData) {
+    return SampleItem(itemData['name']);
+  }
 }
