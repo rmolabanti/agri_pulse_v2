@@ -12,7 +12,11 @@ class SampleItemListView extends StatelessWidget {
       SampleItem(1),
       SampleItem(2),
       SampleItem(3),
-      SampleItem(4)
+      SampleItem(4),
+      SampleItem(5),
+      SampleItem(6),
+      SampleItem(7),
+      SampleItem(8)
     ],
   });
 
@@ -24,7 +28,7 @@ class SampleItemListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sample Items'),
+        title: const Text('Agri Pulse'),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
