@@ -57,23 +57,34 @@ class SampleItemListView extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           final item = items[index];
 
-          return ListTile(
-              title: Text('SampleItem ${item.id}'),
-              leading: const CircleAvatar(
-                // Display the Flutter Logo image asset.
-                foregroundImage: AssetImage('assets/images/flutter_logo.png'),
-              ),
-              onTap: () {
-                // Navigate to the details page. If the user leaves and returns to
-                // the app after it has been killed while running in the
-                // background, the navigation stack is restored.
-                Navigator.restorablePushNamed(
-                  context,
-                  SampleItemDetailsView.routeName,
-                );
-              });
-        },
-      ),
-    );
+                  return ListTile(
+                      title: Text(item.id),
+                      leading: const CircleAvatar(
+                        // Display the Flutter Logo image asset.
+                        foregroundImage:
+                            AssetImage('assets/images/flutter_logo.png'),
+                      ),
+                      onTap: () {
+                        // Navigate to the details page. If the user leaves and returns to
+                        // the app after it has been killed while running in the
+                        // background, the navigation stack is restored.
+                        Navigator.restorablePushNamed(
+                          context,
+                          SampleItemDetailsView.routeName,
+                        );
+                      });
+                },
+              );
+            }));
+  }
+}
+
+class _ViewModel {
+  final List<SampleItem> items;
+
+  _ViewModel({required this.items});
+
+  factory _ViewModel.fromStore(Store<List<SampleItem>> store) {
+    return _ViewModel(items: store.state);
   }
 }
