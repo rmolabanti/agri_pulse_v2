@@ -1,14 +1,14 @@
 {
   "listings": [
     {
-      "Name": "nano urea",
-      "Description": "",
-      "Type": ""
+      "name": "nano urea",
+      "description": "",
+      "type": ""
     },
     {
-      "Name": "agri-drones",
-      "Description": "",
-      "Type": ""
+      "name": "agri-drones",
+      "description": "",
+      "type": ""
     }
   ]
 }
