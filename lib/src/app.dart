@@ -4,9 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-import 'sample_feature/sample_item.dart';
-import 'sample_feature/sample_item_details_view.dart';
-import 'sample_feature/sample_item_list_view.dart';
+import 'listings_feature/listing.dart';
+import 'listings_feature/listing_details_view.dart';
+import 'listings_feature/listings_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
@@ -19,13 +19,13 @@ class MyApp extends StatelessWidget {
   });
 
   final SettingsController settingsController;
-  final Store<List<SampleItem>> store;
+  final Store<List<Listing>> store;
 
   // This widget is the root of your application.
 
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<List<SampleItem>>(
+    return StoreProvider<List<Listing>>(
         store: store,
         child: MaterialApp(
           // Providing a restorationScopeId allows the Navigator built by the
@@ -71,11 +71,11 @@ class MyApp extends StatelessWidget {
                 switch (routeSettings.name) {
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
-                  case SampleItemDetailsView.routeName:
-                    return const SampleItemDetailsView();
-                  case SampleItemListView.routeName:
+                  case ListingDetailsView.routeName:
+                    return const ListingDetailsView();
+                  case ListingsListView.routeName:
                   default:
-                    return const SampleItemListView();
+                    return const ListingsListView();
                 }
               },
             );

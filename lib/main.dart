@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 
 import 'src/app.dart';
-import 'src/sample_feature/actions.dart';
-import 'src/sample_feature/sample_item.dart';
+import 'src/listings_feature/actions.dart';
+import 'src/listings_feature/listing.dart';
 import 'src/settings/settings_controller.dart';
 import 'src/settings/settings_service.dart';
 
 void main() async {
   // Set up the SettingsController, which will glue user settings to multiple
   // Flutter Widgets.
-  final Store<List<SampleItem>> store = getStore();
+  final Store<List<Listing>> store = getStore();
   store.dispatch(FetchItemsAction());
 
   final settingsController = SettingsController(SettingsService());

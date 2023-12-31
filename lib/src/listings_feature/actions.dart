@@ -4,14 +4,14 @@ import 'dart:convert';
 import 'package:redux/redux.dart';
 import 'package:http/http.dart' as http;
 
-import 'sample_item.dart';
+import 'listing.dart';
 
 enum ItemActions { fetchItems, itemsFetched, itemsFetchError }
 
 class FetchItemsAction {}
 
 class ItemsFetchedAction {
-  final List<SampleItem> items;
+  final List<Listing> items;
   ItemsFetchedAction(this.items);
 }
 
@@ -20,7 +20,7 @@ class ItemsFetchErrorAction {
   ItemsFetchErrorAction(this.error);
 }
 
-List<SampleItem> itemsReducer(List<SampleItem> state, action) {
+List<Listing> itemsReducer(List<Listing> state, action) {
   if (action is FetchItemsAction) {
     fetchItems();
   }
@@ -34,9 +34,9 @@ List<SampleItem> itemsReducer(List<SampleItem> state, action) {
   }
 }
 
-final store = Store<List<SampleItem>>(itemsReducer, initialState: []);
+final store = Store<List<Listing>>(itemsReducer, initialState: []);
 
-Store<List<SampleItem>> getStore() {
+Store<List<Listing>> getStore() {
   return store;
 }
 
@@ -53,7 +53,7 @@ Future<void> fetchItems() async {
     final parsedJson = jsonDecode(response.body) as Map<String, dynamic>;
     final listings = parsedJson['listings'] as List;
     final fetchedItems =
-        listings.map((itemData) => SampleItem.fromJson(itemData)).toList();
+        listings.map((itemData) => Listing.fromJson(itemData)).toList();
     store.dispatch(ItemsFetchedAction(fetchedItems));
   } catch (error) {
     // Handle error (e.g., log or display to user)

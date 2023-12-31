@@ -3,22 +3,22 @@ import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 import '../settings/settings_view.dart';
-import 'sample_item.dart';
-import 'sample_item_details_view.dart';
+import 'listing.dart';
+import 'listing_details_view.dart';
 
 /// Displays a list of SampleItems.
-class SampleItemListView extends StatelessWidget {
-  const SampleItemListView({
+class ListingsListView extends StatelessWidget {
+  const ListingsListView({
     super.key,
     this.items = const [
-      SampleItem("1"),
-      SampleItem("2"),
+      Listing("1"),
+      Listing("2"),
     ],
   });
 
   static const routeName = '/';
 
-  final List<SampleItem> items;
+  final List<Listing> items;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class SampleItemListView extends StatelessWidget {
         // In contrast to the default ListView constructor, which requires
         // building all Widgets up front, the ListView.builder constructor lazily
         // builds Widgets as they’re scrolled into view.
-        body: StoreConnector<List<SampleItem>, _ViewModel>(
+        body: StoreConnector<List<Listing>, _ViewModel>(
             converter: (store) => _ViewModel.fromStore(store),
             builder: (context, vm) {
               return ListView.builder(
@@ -58,10 +58,15 @@ class SampleItemListView extends StatelessWidget {
 
                   return ListTile(
                       title: Text(item.id),
-                      leading: const CircleAvatar(
-                        // Display the Flutter Logo image asset.
-                        foregroundImage:
-                            AssetImage('assets/images/flutter_logo.png'),
+                      leading: CircleAvatar(
+                        // Display the first character of the text as the
+                        // background image.
+                        backgroundColor:
+                            Colors.primaries[index % Colors.primaries.length],
+                        // Display the first character of the text as the
+                        // background image.
+                        child: Text(item.id[0],
+                            style: const TextStyle(color: Colors.white)),
                       ),
                       onTap: () {
                         // Navigate to the details page. If the user leaves and returns to
@@ -69,7 +74,7 @@ class SampleItemListView extends StatelessWidget {
                         // background, the navigation stack is restored.
                         Navigator.restorablePushNamed(
                           context,
-                          SampleItemDetailsView.routeName,
+                          ListingDetailsView.routeName,
                         );
                       });
                 },
@@ -79,11 +84,11 @@ class SampleItemListView extends StatelessWidget {
 }
 
 class _ViewModel {
-  final List<SampleItem> items;
+  final List<Listing> items;
 
   _ViewModel({required this.items});
 
-  factory _ViewModel.fromStore(Store<List<SampleItem>> store) {
+  factory _ViewModel.fromStore(Store<List<Listing>> store) {
     return _ViewModel(items: store.state);
   }
 }
