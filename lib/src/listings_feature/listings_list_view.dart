@@ -25,6 +25,7 @@ class ListingsListView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Agri Pulse'),
+          leading: Image.asset('assets/images/ap_logo.png'),
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
